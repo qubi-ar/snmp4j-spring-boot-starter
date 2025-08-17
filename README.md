@@ -184,10 +184,62 @@ Otherwise, a fallback `NoopMibLookup` is used (OIDs only).
 
 ------------------------------------------------------------------------
 
+## Running the Demo Application
+
+The `qubi-snmp-demo-app/` directory contains a complete working example.
+
+### Prerequisites
+1. Build and install the project:
+   ```bash
+   mvn clean install
+   ```
+
+2. Start the mock SNMP agents:
+   ```bash
+   cd mocknet && docker-compose up -d
+   ```
+
+### Running the Demo
+Navigate to the demo app and run:
+```bash
+cd qubi-snmp-demo-app
+mvn spring-boot:run
+```
+
+The demo app will:
+- Start a web server on port 8080
+- Listen for SNMP traps on port 9162
+- Log received traps to the console
+- Expose actuator endpoints at `http://localhost:8080/actuator/qubiSnmp/`
+
+### Testing the Demo
+
+With the demo running and mocknet started, test trap reception:
+
+#### Send v2c trap:
+```bash
+snmptrap -v2c -c public localhost:9162 '' 1.3.6.1.6.3.1.1.5.3 1.3.6.1.2.1.2.2.1.1.1 i 1
+```
+
+#### Query mock agents:
+```bash
+# SNMP v2c (router1:1611)
+snmpget -v2c -c public localhost:1611 1.3.6.1.2.1.1.3.0
+snmpget -v2c -c public localhost:1611 1.3.6.1.2.1.1.5.0
+
+# SNMP v3 (core-switch:1612)
+snmpget -v3 -u simulator -l authPriv -a MD5 -A auctoritas -x DES -X privatus -n 08b5411f848a2581a41672a759c87380 localhost:1612 1.3.6.1.2.1.1.3.0
+```
+
+------------------------------------------------------------------------
+
+## Testing with Mock SNMP Agents
+
+------------------------------------------------------------------------
+
 ## Status
 
 🚧 **Early stage (v0.1.0)** --- functional traps, client, scheduler,
 metrics.
-Expect API adjustments until a stable release.# qubi-snmp-spring-boot-starter
-# snmp4j-spring-boot-starter
-# snmp4j-spring-boot-starter
+Expect API adjustments until a stable release.
+
