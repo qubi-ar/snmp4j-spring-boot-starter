@@ -1,0 +1,8 @@
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Client.class
+ar/qubi/snmp/autoconfigure/QubiSnmpAutoConfiguration.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Mib.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Pool.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Log.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Traps.class

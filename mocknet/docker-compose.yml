@@ -1,0 +1,16 @@
+services:
+  mock-router1:
+    build: ./router1
+    ports:
+      - "1611:1611/udp"
+    volumes:
+      - ./router1:/data:ro
+    restart: unless-stopped
+
+  mock-core-switch:
+    build: ./core-switch
+    ports:
+      - "1612:1612/udp"
+    volumes:
+      - ./core-switch:/data:ro
+    restart: unless-stopped
