@@ -28,10 +28,45 @@ public class QubiSnmpProperties {
   public static class Traps {
     private boolean enabled = true;
     private int port = 9162;
+    private int version = 2;
+    private Security security = new Security();
+    
     public boolean isEnabled() { return enabled; }
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
     public int getPort() { return port; }
     public void setPort(int port) { this.port = port; }
+    public int getVersion() { return version; }
+    public void setVersion(int version) { this.version = version; }
+    public Security getSecurity() { return security; }
+    public void setSecurity(Security security) { this.security = security; }
+
+    public static class Security {
+      private String communityString = "public";
+      private String securityName;
+      private String authenticationProtocol;
+      private String authenticationPassphrase;
+      private String privacyProtocol;
+      private String privacyPassphrase;
+      private String contextName;
+      private String contextEngineId;
+
+      public String getCommunityString() { return communityString; }
+      public void setCommunityString(String communityString) { this.communityString = communityString; }
+      public String getSecurityName() { return securityName; }
+      public void setSecurityName(String securityName) { this.securityName = securityName; }
+      public String getAuthenticationProtocol() { return authenticationProtocol; }
+      public void setAuthenticationProtocol(String authenticationProtocol) { this.authenticationProtocol = authenticationProtocol; }
+      public String getAuthenticationPassphrase() { return authenticationPassphrase; }
+      public void setAuthenticationPassphrase(String authenticationPassphrase) { this.authenticationPassphrase = authenticationPassphrase; }
+      public String getPrivacyProtocol() { return privacyProtocol; }
+      public void setPrivacyProtocol(String privacyProtocol) { this.privacyProtocol = privacyProtocol; }
+      public String getPrivacyPassphrase() { return privacyPassphrase; }
+      public void setPrivacyPassphrase(String privacyPassphrase) { this.privacyPassphrase = privacyPassphrase; }
+      public String getContextName() { return contextName; }
+      public void setContextName(String contextName) { this.contextName = contextName; }
+      public String getContextEngineId() { return contextEngineId; }
+      public void setContextEngineId(String contextEngineId) { this.contextEngineId = contextEngineId; }
+    }
   }
 
   public static class Client {

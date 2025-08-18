@@ -5,4 +5,5 @@ ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Pool.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Log.class
+ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Traps$Security.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Traps.class

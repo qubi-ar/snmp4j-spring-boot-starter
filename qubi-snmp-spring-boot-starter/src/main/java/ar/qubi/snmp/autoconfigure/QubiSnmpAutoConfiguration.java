@@ -1,9 +1,9 @@
 package ar.qubi.snmp.autoconfigure;
 
 import ar.qubi.snmp.api.TrapMessage;
-import ar.qubi.snmp.autoconfigure.QubiSnmpProperties;
 import ar.qubi.snmp.client.SnmpClient;
-import ar.qubi.snmp.client.SnmpClientStub;
+
+import ar.qubi.snmp.client.SnmpClientSnmp4j;
 import ar.qubi.snmp.mib.MibLookup;
 import ar.qubi.snmp.mib.SystemMibLookup;
 import ar.qubi.snmp.scheduler.JobConfig;
@@ -11,20 +11,22 @@ import ar.qubi.snmp.scheduler.PollingJob;
 import ar.qubi.snmp.scheduler.SnmpPollingRegistry;
 import ar.qubi.snmp.scheduler.SnmpPollingRegistryInMemory;
 import ar.qubi.snmp.traps.SnmpTrapListener;
+import ar.qubi.snmp.traps.SnmpTrapServer;
 import ar.qubi.snmp.traps.SnmpTrapServerSnmp4j;
 import ar.qubi.snmp.traps.TrapDispatcher;
 import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
-import java.util.Map;
-import org.springframework.context.annotation.Lazy;
-
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
@@ -47,8 +49,8 @@ public class QubiSnmpAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public SnmpClient snmpClient() {
-    return new SnmpClientStub();
+  public SnmpClient snmpClient() throws IOException {
+    return new SnmpClientSnmp4j();
   }
 
   @Bean
@@ -70,12 +72,12 @@ public class QubiSnmpAutoConfiguration {
           havingValue = "true",
           matchIfMissing = true
   )
-  public SnmpTrapServerSnmp4j snmpTrapServer(
+  public SnmpTrapServer snmpTrapServer(
           QubiSnmpProperties props,
-          MibLookup mibLookup,
-          TrapDispatcher dispatcher) {
+          @Autowired MibLookup mibLookup,
+          @Autowired TrapDispatcher dispatcher) {
 
-    var server = new SnmpTrapServerSnmp4j(
+    var server = new SnmpTrapServer(
             props.getTraps().getPort(),
             dispatcher,
             () -> mibLookup
@@ -136,7 +138,7 @@ public class QubiSnmpAutoConfiguration {
       
       // Start the trap server if it exists
       try {
-        SnmpTrapServerSnmp4j trapServer = ctx.getBean(SnmpTrapServerSnmp4j.class);
+        SnmpTrapServer trapServer = ctx.getBean(SnmpTrapServer.class);
         trapServer.start();
         log.info("SNMP trap server started on port " + trapServer.getPort());
       } catch (Exception e) {

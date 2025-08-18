@@ -219,6 +219,21 @@ With the demo running and mocknet started, test trap reception:
 #### Send v2c trap:
 ```bash
 snmptrap -v2c -c public localhost:9162 '' 1.3.6.1.6.3.1.1.5.3 1.3.6.1.2.1.2.2.1.1.1 i 1
+
+snmptrap -v 3 \
+  -u demo-user \
+  -a SHA -A demo-auth-pass \
+  -x AES -X demo-priv-pass \
+  -l authPriv \
+  -E 0x800000090300000123456789 \
+  -n demo-context \
+  127.0.0.1:9162 "" \
+  1.3.6.1.6.3.1.1.5.3 \
+  1.3.6.1.2.1.1.3.0 t 12345 \
+  1.3.6.1.6.3.1.1.4.1.0 o 1.3.6.1.6.3.1.1.5.3 \
+  1.3.6.1.2.1.2.2.1.1.1 i 1 \
+  1.3.6.1.2.1.2.2.1.2.1 s "eth0"
+
 ```
 
 #### Query mock agents:

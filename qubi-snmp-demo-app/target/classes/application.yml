@@ -3,3 +3,13 @@ qubi:
     traps:
       enabled: true
       port: 9162
+      version: 3
+      security:
+        security-name: "demo-user"
+        authentication-protocol: "SHA"
+        authentication-passphrase: "demo-auth-pass"
+        privacy-protocol: "AES128"
+        privacy-passphrase: "demo-priv-pass"
+        context-name: "demo-context"
+        context-engine-id: "800000090300000123456789"
+
