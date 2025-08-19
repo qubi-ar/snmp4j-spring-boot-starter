@@ -4,7 +4,9 @@ qubi:
       enabled: true
       port: 9162
       version: 3
+#      version: 2
       security:
+#         community-string: "public"
         security-name: "demo-user"
         authentication-protocol: "SHA"
         authentication-passphrase: "demo-auth-pass"
@@ -12,4 +14,24 @@ qubi:
         privacy-passphrase: "demo-priv-pass"
         context-name: "demo-context"
         context-engine-id: "800000090300000123456789"
+    scheduler:
+      # Cron expression: "second minute hour day-of-month month day-of-week"
+      # Examples:
+      # cron: "0 */30 * * * *"    # Every 30 minutes
+      # cron: "0 0 */2 * * *"     # Every 2 hours  
+      # cron: "0 15 10 * * *"     # Every day at 10:15 AM
+      # cron: "*/30 * * * * *"    # Every 30 seconds
+      cron: "*/30 * * * * *"      # Every 30 seconds for testing
+      # Alternative: use fixed rate in seconds (ignored if cron is set)
+      # fixed-rate-seconds: 10
 
+logging:
+  level:
+    ar.qubi.snmp: DEBUG
+    org.snmp4j: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: conditions,beans

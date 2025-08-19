@@ -2,7 +2,9 @@
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/scheduler/JobConfig.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/api/TrapMessage.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/traps/TrapDispatcher.java
+/home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/scheduler/CronParser.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/client/SnmpClientSnmp4j.java
+/home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/autoconfigure/QubiSnmpProperties.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/scheduler/SnmpPollingRegistryInMemory.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/api/SnmpWalkResult.java
 /home/fmalaspina/project/qubi-snmp/qubi-snmp-core/src/main/java/ar/qubi/snmp/mib/SystemMibLookup.java

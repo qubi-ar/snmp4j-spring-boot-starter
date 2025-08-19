@@ -4,6 +4,7 @@ ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Mib.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Pool.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties.class
+META-INF/spring-autoconfigure-metadata.properties
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Scheduler$Log.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Traps$Security.class
 ar/qubi/snmp/autoconfigure/QubiSnmpProperties$Traps.class

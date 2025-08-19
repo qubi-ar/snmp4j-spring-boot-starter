@@ -1,6 +1,6 @@
 package ar.qubi.snmp.traps;
 
-import ar.qubi.snmp.api.TrapMessage;
+import ar.qubi.snmp.autoconfigure.QubiSnmpProperties;
 import ar.qubi.snmp.mib.MibLookup;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -12,19 +12,22 @@ public class SnmpTrapServer {
     private final Supplier<MibLookup> mibLookup;
     private SnmpTrapServerSnmp4j server;
     private final AtomicBoolean running = new AtomicBoolean(false);
-
-    public SnmpTrapServer(int port, TrapDispatcher dispatcher, Supplier<MibLookup> mibLookup) {
+    private final QubiSnmpProperties.Traps.Security security;
+    public SnmpTrapServer(int port, QubiSnmpProperties.Traps.Security security, Supplier<MibLookup> mibLookup,TrapDispatcher dispatcher) {
         this.port = port;
-        this.dispatcher = dispatcher;
+        this.security = security;
         this.mibLookup = mibLookup;
+        this.dispatcher = dispatcher;
+
     }
+
 
     public synchronized void start() {
         if (running.get()) {
             return;
         }
         
-        server = new SnmpTrapServerSnmp4j(port, dispatcher, mibLookup);
+        server = new SnmpTrapServerSnmp4j(this.security, port, dispatcher, mibLookup);
         server.start();
         running.set(true);
     }

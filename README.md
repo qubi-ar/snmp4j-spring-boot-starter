@@ -16,7 +16,7 @@ setup.
 Features: - **Trap receiver (v1/v2c/v3)** with annotation-based
 listeners.
 - **Polling jobs** (fixed rate or cron) executed by a configurable
-  `ExecutorService` (no Quartz).
+  `ExecutorService`.
 - **On-demand SNMP client** for GET, GETNEXT, BULK, and WALK.
 - **MIB lookup** using system MIBs (via `snmptranslate`) with fallback
   when unavailable.
@@ -233,6 +233,16 @@ snmptrap -v 3 \
   1.3.6.1.6.3.1.1.4.1.0 o 1.3.6.1.6.3.1.1.5.3 \
   1.3.6.1.2.1.2.2.1.1.1 i 1 \
   1.3.6.1.2.1.2.2.1.2.1 s "eth0"
+
+
+snmpinform -v 3 -l authPriv \
+    -u "demo-user" -a SHA -A "demo-auth-pass" \
+    -x AES128 -X "demo-priv-pass" \
+    -n "demo-context" -E 0x800000090300000123456789 \
+    127.0.0.1:9162 \
+    '' \
+    1.3.6.1.2.1.1.3.0 t 12345 \
+    1.3.6.1.6.3.1.1.4.1.0 o 1.3.6.1.6.3.1.1.5.3
 
 ```
 

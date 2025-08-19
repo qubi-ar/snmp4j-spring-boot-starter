@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ar.qubi.snmp.SnmpIntegrationTest
--------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.22 s -- in ar.qubi.snmp.SnmpIntegrationTest

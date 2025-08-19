@@ -1,8 +1,6 @@
 package ar.qubi.snmp.autoconfigure;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "qubi.snmp")
 public class QubiSnmpProperties {
   private boolean enabled = true;
   private Traps traps = new Traps();
